@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Welcome to Ethiopian Student Association. Helping students find safety, continue education, and rebuild hope.">
+  <title>{% block title %}Welcome to Ethiopian Student Association{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'association/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="{% url 'home' %}">
+      <span class="brand-mark">E<span>SA</span></span>
+      <span class="brand-name">Ethiopian Student<br><b>Association</b></span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <nav class="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'stories' %}">Stories of Hope</a>
+      <a href="{% url 'donate' %}">Donate</a>
+      <a class="nav-cta" href="{% url 'apply' %}">Ask for Support <span>↗</span></a>
+    </nav>
+  </div>
+</header>
+<main>
+  {% if messages %}<div class="message-wrap">{% for message in messages %}<div class="alert">{{ message }}</div>{% endfor %}</div>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="footer-main">
+    <div><a class="brand footer-brand" href="{% url 'home' %}"><span class="brand-mark">E<span>SA</span></span><span class="brand-name">Ethiopian Student<br><b>Association</b></span></a><p class="footer-copy">Every student deserves safety, dignity, and the chance to learn.</p></div>
+    <div><h4>Explore</h4><a href="{% url 'stories' %}">Stories of Hope</a><a href="{% url 'donate' %}">Make a Donation</a><a href="{% url 'apply' %}">Request Support</a></div>
+    <div><h4>Our promise</h4><p>We treat applications with care. Personal safety comes before publicity, and student stories are shared only with consent.</p></div>
+  </div>
+  <div class="footer-bottom"><span>© {% now "Y" %} Ethiopian Student Association</span><span>Protect a future. Keep a dream alive.</span></div>
+</footer>
+</body>
+</html>
